@@ -1,0 +1,17 @@
+digraph ERD {
+	S [label="Student
+------
+student_id: PK
+name
+age"]
+	C [label="Course
+------
+course_id: PK
+title"]
+	E [label="Enrollment
+------
+enrollment_id: PK
+semester"]
+	S -> E [label="1:N"]
+	C -> E [label="1:N"]
+}
