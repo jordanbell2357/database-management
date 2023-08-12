@@ -2,12 +2,12 @@
 
 -- Query Formulation Answers
 
-1.
+--1.
 
 -- Condition using default date format
 SELECT eventrequest.eventno, dateheld, COUNT(*) "Number of Plans"
 FROM eventrequest, eventplan
-WHERE eventplan.workdate BETWEEN '1-Dec-2022' AND '31-Dec-2022' 
+WHERE eventplan.workdate BETWEEN '2022-12-01' AND '2022-12-31' 
   AND eventrequest.eventno = eventplan.eventno
 GROUP BY eventrequest.eventno, dateheld
 HAVING COUNT(*) > 1;
@@ -27,12 +27,12 @@ WHERE eventplan.workdate BETWEEN to_date('12/1/2022','mm/dd/yyyy') AND to_date('
 GROUP BY eventrequest.eventno, dateheld
 HAVING COUNT(*) > 1;
 
-2.
+--2.
 
 -- Condition using default date format
 SELECT eventplan.planno, eventrequest.eventno, workdate, activity
 FROM eventrequest, eventplan, facility
-WHERE eventplan.workdate BETWEEN '1-Dec-2022' AND '31-Dec-2022' 
+WHERE eventplan.workdate BETWEEN '2022-12-01' AND '2022-12-31' 
   AND eventrequest.eventno = eventplan.eventno 
   AND eventrequest.facno = facility.facno
   AND facname = 'Basketball arena';
@@ -61,12 +61,12 @@ WHERE eventplan.workdate BETWEEN to_date('12/1/2022','mm/dd/yyyy') AND to_date('
   AND facno IN
       ( SELECT facno FROM facility WHERE facname = 'Basketball arena' );
 
-3.	
+--3.	
 	
 -- Condition using default date format
 SELECT eventrequest.eventno, dateheld, status, estcost
 FROM eventrequest, employee, facility, eventplan
-WHERE eventplan.workdate BETWEEN '1-Oct-2022' AND '31-Dec-2022' 
+WHERE eventplan.workdate BETWEEN '2022-10-01' AND '2022-12-31' 
   AND eventplan.empno = employee.empno AND eventrequest.facno = facility.facno
   AND facname = 'Basketball arena' AND empname = 'Mary Manager'
   AND eventrequest.eventno = eventplan.eventno;
@@ -98,14 +98,14 @@ WHERE dateheld BETWEEN to_date('10/1/2022','mm/dd/yyyy') AND to_date('12/31/2022
   AND empno IN
       ( SELECT empno FROM employee WHERE empname = 'Mary Manager' );
 
-4.	
+--4.	
 -- The first solution is preferred because it involves one less table. 
 -- However, credit for the second answer as it involves different join operations.
 
 -- Condition using default date format
 SELECT eventplan.planno, lineno, locname, resname, resourcecnt, timestart, timeend
 FROM facility, eventplan, eventplanline, resourcetbl, location
-WHERE eventplan.workdate BETWEEN '1-Oct-2022' AND '31-Dec-2022' 
+WHERE eventplan.workdate BETWEEN '2022-10-01' AND '2022-12-31' 
   AND eventplan.planno = eventplanline.planno AND location.facno = facility.facno
   AND facname = 'Basketball arena' AND eventplanline.resno = resourcetbl.resno
   AND location.locno = eventplanline.locno 
@@ -130,42 +130,42 @@ WHERE eventplan.workdate BETWEEN to_date('10/1/2022','mm/dd/yyyy') AND to_date('
   AND location.locno = eventplanline.locno 
   AND eventplan.activity = 'Operation';
 
-5.
+--5.
 
 SELECT EventPlan.Planno, SUM(ResourceCnt * Rate) AS SumResCost
 FROM EventPlan, EventPlanLine, ResourceTbl
 WHERE EventPlan.PlanNo = EventPlanLine.PlanNo
   AND EventPlanLine.ResNo = ResourceTbl.ResNo
-  AND WorkDate BETWEEN '01-Dec-2022' AND '31-Dec-2022'
+  AND WorkDate BETWEEN '2022-12-01' AND '2022-12-31'
 GROUP BY EventPlan.Planno
 HAVING SUM(ResourceCnt * Rate) > 50;
 
 SELECT EventPlan.Planno, SUM(ResourceCnt * Rate) AS SumResCost
 FROM EventPlan INNER JOIN EventPlanLine ON EventPlan.PlanNo = EventPlanLine.PlanNo
    INNER JOIN ResourceTbl ON EventPlanLine.ResNo = ResourceTbl.ResNo
-WHERE WorkDate BETWEEN '01-Dec-2022' AND '31-Dec-2022'
+WHERE WorkDate BETWEEN '2022-12-01' AND '2022-12-31'
 GROUP BY EventPlan.Planno
 HAVING SUM(ResourceCnt * Rate) > 50;
 
-Database Modification Answers
+-- Database Modification Answers
 
-1.	
+-- 1.	
 INSERT INTO Facility ( FacNo, FacName )
 VALUES ('F107', 'Swimming Pool');
 
-2.	
+-- 2.	
 INSERT INTO Location ( LocNo, FacNo, LocName )
 VALUES ('L107', 'F107', 'Door');
 
-3.	
+-- 3.	
 INSERT INTO Location ( LocNo, FacNo, LocName )
 VALUES ('L108', 'F107', 'Locker Room');
 
-4.	
+-- 4.	
 UPDATE Location SET LocName = 'Gate'
 WHERE LocNo = 'L107'; 
 
-5.
+-- 5.
 -- Two DELETE statements, one for each row.
 DELETE Location
 WHERE LocNo = 'L107';

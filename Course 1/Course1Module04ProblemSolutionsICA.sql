@@ -18,11 +18,11 @@ SELECT EventNo, DateHeld, Status, EstAudience
 SELECT EventNo, DateHeld, Customer.CustNo, CustName
  FROM EventRequest, Customer
  WHERE City = 'Boulder'
- AND DateHeld BETWEEN '1-Dec-2022' AND '31-Dec-2022'
+ AND DateHeld BETWEEN '2022-12-01' AND '2022-12-31'
  AND EventRequest.CustNo = Customer.CustNo;
  
 SELECT EventNo, DateHeld, Customer.CustNo, CustName
  FROM EventRequest INNER JOIN Customer
  ON EventRequest.CustNo = Customer.CustNo
  WHERE City = 'Boulder'
- AND DateHeld BETWEEN '1-Dec-2022' AND '31-Dec-2022' ;
+ AND DateHeld BETWEEN '2022-12-01' AND '2022-12-31';

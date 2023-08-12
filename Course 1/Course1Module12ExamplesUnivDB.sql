@@ -125,14 +125,14 @@ SELECT StdFirstName, StdLastName, StdCity, EnrGrade
 INSERT INTO Faculty
 	(FacNo, FacFirstName, FacLastName, FacCity, FacState,
 	 FacDept, FacRank, FacSalary, FacSupervisor, FacHireDate, FacZipCode)
-	 VALUES ('123-45-6789','JUDY','CHAN','PARKER','CO','MGMT','PROF',95000.00,NULL,'15-Mar-2020','80138-9954');
+	 VALUES ('123-45-6789','JUDY','CHAN','PARKER','CO','MGMT','PROF',95000.00,NULL,'2020-03-15','80138-9954');
 
 INSERT INTO Offering
 	(OfferNo, CourseNo, OffTerm, OffYear, OffLocation, OffTime, FacNo, OffDays)
 	VALUES (9997,'IS460','SPRING',2020,'BLM307','13:30:00','123-45-6789','TTH');
 
 -- Use commit in Oracle
--- COMMIT;
+COMMIT;
 
 -- Example 3 
 -- Delete offerings taught by Judy Chan.
@@ -152,7 +152,7 @@ INSERT INTO Offering
 	VALUES (9997,'IS460','SPRING',2020,'BLM307','13:30:00','123-45-6789','TTH');
 
  UPDATE Offering 
-  SET OffLocation = 'BLM412’
+  SET OffLocation = 'BLM307'
   WHERE OffYear = 2020 
     AND FacNo IN
   ( SELECT FacNo FROM Faculty 
@@ -165,7 +165,7 @@ DELETE FROM Offering WHERE OfferNo = 9998;
 DELETE FROM Faculty WHERE FacNo = '123-45-6789';
 
 -- Use commit in Oracle
--- COMMIT;
+COMMIT;
 
 -- Example 5
 -- Retrieve the course number, course description, count of offerings, and average enrollment 
@@ -304,7 +304,7 @@ INSERT INTO stdclub
 -- Oracle COMMIT statement
 -- Not necessary in PostgreSQL if using Auto Commit
 
--- COMMIT;
+COMMIT;
 -- Example 1
 
 SELECT StdNo 
