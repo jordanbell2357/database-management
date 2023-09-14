@@ -5,12 +5,12 @@
 -- 96 rows have been added to the SSSales table (originally only 96 rows)
 -- Only use DELETE if recreating rows without dropping tables
 
--- delete from SSSales;
--- delete from SSStore;
--- delete from SSTimeDim;
--- delete from SSDivision;
--- delete from SSCustomer;
--- delete from SSItem;
+--delete from SSSales;
+--delete from SSStore;
+--delete from SSTimeDim;
+--delete from SSDivision;
+--delete from SSCustomer;
+--delete from SSItem;
 
 INSERT INTO SSTimeDim
 (TimeNo, TimeDay, TimeMonth, TimeQuarter, TimeYear, TimeDayofWeek, TimeFiscalYear)
