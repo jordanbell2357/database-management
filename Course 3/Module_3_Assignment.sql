@@ -38,6 +38,8 @@ CumSumExtCost
 FROM inventory_fact i, cust_vendor_dim c, date_dim d
  WHERE i.CustVendorKey = c.CustVendorKey
  AND TransTypeKey = 5 AND i.DateKey = d.DateKey
+ AND c.Zip = '02162'
+ AND calmonth = 6
 group by c.Zip, CalYear, CalMonth;
 
 -- Query 6: Ratio to report applied to the entire result
