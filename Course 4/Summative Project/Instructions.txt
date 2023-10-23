@@ -1,0 +1,11 @@
+Once you are done with the Project Exercise, You have to submit following:
+
+Submit a text file containing a wrangling script saved during the import process by name "<Student Name>_<Date>.txt "
+
+Submit your saved microstrategy file named "<Student Name> - Restaurant Location Analysis.mstr " containing your project dashboard with both the sheets and all the visualizations as required in the Project exercise document.
+
+Submit a document by name "<Student Name>_Project Summary.doc " containing a summary and analysis of the exercise. It should briefly cover following aspects:
+
+  Analysis of all the visualizations with respect to how it is helping you find the Key Performance Indicators and the causes of various problems identified.    
+
+               What more could you have done other than what is included in the exercise to achieve better analysis of both the datasets?
